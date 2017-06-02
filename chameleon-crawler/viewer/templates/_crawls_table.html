@@ -1,0 +1,72 @@
+<form>
+	<h2><img src="{{ url_for('static', filename='16.png') }}" title="Chameleon"> Crawls</h2>
+	<p>
+		See what <a href="https://github.com/ghostwords/chameleon">Chameleon</a> found on its <a href="https://github.com/ghostwords/chameleon-crawler">travels</a> around the Web.
+	</p>
+	<input type="submit" formaction="/results" value="Show results">
+	&nbsp;
+	<input type="submit" formaction="/errors" value="Show failures">
+	<br>
+	<br>
+	<table id="crawls-table">
+		<tr class="no-sort">
+			<th><input type="checkbox" class="select-all"></th>
+			<th>crawl #</th>
+			<th>start time</th>
+			<th>number of URLs</th>
+			<th>timeout rate</th>
+			<th>error rate</th>
+			<th>duration (minutes)</th>
+			<th>speed (URLs/min)</th>
+			<th>crawl args</th>
+		</tr>
+		{% for crawl in crawls %}
+			<tr>
+				<td>
+					<input type="checkbox" name="crawl" value="{{ crawl.id }}"
+						{{- ' checked' if crawl.id|string in request.values.getlist('crawl') }}>
+				</td>
+
+				<td class="center">{{ crawl.id }}</td>
+
+				<td>{{ crawl.start_time }}</td>
+
+				<td class="right">{{ crawl.num_urls|number_format }}</td>
+
+				<td class="right">
+				{% with num_timeouts = error_counts[crawl.id]['TIMEOUT']|default(0) if crawl.id in error_counts else 0 %}
+					{% if num_timeouts > 0 %}
+						{{ ((num_timeouts / crawl.num_urls * 100)|round(1)) }}%
+					{% endif %}
+				{% endwith %}
+				</td>
+
+				<td class="right">
+				{% with num_errors = error_counts[crawl.id]['BROWSER ERROR']|default(0) if crawl.id in error_counts else 0 %}
+					{% if num_errors > 0 %}
+						{{ ((num_errors / crawl.num_urls * 100)|round(1)) }}%
+					{% endif %}
+				{% endwith %}
+				</td>
+
+				<td class="right">
+					{{ (crawl.duration / 60)|round|int if crawl.duration is number else '-' }}
+				</td>
+
+				<td class="right">
+					{{ (crawl.num_urls / crawl.duration * 60)|round(1) if crawl.duration is number else '-' }}
+				</td>
+
+				<td title="{{ crawl.args if crawl.args }}">
+					<div style="width:120px" class="ellipsis">
+						{{ crawl.args if crawl.args }}
+					</div>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+	<br>
+	<input type="submit" formaction="/results" value="Show results">
+	&nbsp;
+	<input type="submit" formaction="/errors" value="Show failures">
+</form>

@@ -1,0 +1,88 @@
+a, a:visited {
+	color: #c00;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+body {
+	color: #444;
+	font: normal 15px 'Helvetica Neue', 'Helvetica', sans-serif;
+	line-height: 1.3em;
+	margin: 30px auto;
+	width: 990px;
+}
+
+h1 {
+	margin: 0 0 15px;
+}
+
+h3 {
+	background-color: pink;
+	display: inline-block;
+	margin: 10px 0;
+	padding: 5px;
+}
+
+hr {
+	background-color: #ccc;
+	border: 0;
+	height: 1px;
+	margin: 20px 0;
+}
+
+table {
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #eee;
+}
+
+th {
+	border: 1px solid #ddd;
+	font-size: 13px;
+	padding: 5px 10px;
+	white-space: nowrap;
+}
+
+td {
+	border: 1px solid #ddd;
+	padding: 5px 10px;
+	white-space: nowrap;
+}
+
+input[type=submit] {
+	padding: 5px 10px;
+}
+
+.canvas-image-data {
+	border: 2px dotted pink;
+	max-width: 75px;
+}
+
+.ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.script-url, .url {
+	max-width: 280px;
+}
+
+.script-url {
+	max-width: 900px;
+	padding-bottom: 5px;
+}

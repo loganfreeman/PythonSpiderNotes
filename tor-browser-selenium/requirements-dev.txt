@@ -1,0 +1,4 @@
+pyvirtualdisplay
+stem
+pytest
+pytest-cov

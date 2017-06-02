@@ -1,0 +1,19 @@
+# Python files.
+*.pyc
+*.pyo
+*.egg-info
+
+# Third-party libraries.
+/lib/
+
+# Data files.
+/var/
+
+# Tox files.
+/.tox/
+
+# Cache files
+.cache/
+
+# Coverage
+.coverage

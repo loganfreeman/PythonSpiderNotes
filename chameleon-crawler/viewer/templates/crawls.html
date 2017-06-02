@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+	{% if crawls %}
+		{% include '_crawls_table.html' %}
+	{% else %}
+		No crawls found. Please run crawl.py first.
+	{% endif %}
+
+{% endblock %}
